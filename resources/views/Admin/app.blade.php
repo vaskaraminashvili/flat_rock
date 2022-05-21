@@ -1,23 +1,10 @@
 <!DOCTYPE html>
-
-<!-- =========================================================
-* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
-==============================================================
-
-* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
-* Created by: ThemeSelection
-* License: You must have a valid license purchased in order to legally use the theme for your project.
-* Copyright ThemeSelection (https://themeselection.com)
-
-=========================================================
- -->
-<!-- beautify ignore:start -->
 <html
   lang="en"
   class="light-style layout-menu-fixed"
   dir="ltr"
   data-theme="theme-default"
-  data-admin_assets-path="../admin_assets/"
+  data-admin_assets-path="admin_assets"
   data-template="vertical-menu-template-free"
 >
   <head>
@@ -32,7 +19,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../admin_assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{asset('admin_assets/img/favicon/favicon.ico')}}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -43,26 +30,26 @@
     />
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="../admin_assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="{{asset('admin_assets/vendor/fonts/boxicons.css')}}" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="../admin_assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="../admin_assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="../admin_assets/css/demo.css" />
+    <link rel="stylesheet" href="{{asset('admin_assets/vendor/css/core.css')}}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{asset('admin_assets/vendor/css/theme-default.css')}}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{asset('admin_assets/css/demo.css')}}" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../admin_assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="{{asset('admin_assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
 
-    <link rel="stylesheet" href="../admin_assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="{{asset('admin_assets/vendor/libs/apex-charts/apex-charts.css')}}" />
 
     <!-- Page CSS -->
 
     <!-- Helpers -->
-    <script src="../admin_assets/vendor/js/helpers.js"></script>
+    <script src="{{asset('admin_assets/vendor/js/helpers.js')}}"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="../admin_assets/js/config.js"></script>
+    <script src="{{asset('admin_assets/js/config.js')}}"></script>
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
     <script src="{{ mix('/js/manifest.js') }}" defer></script>
     <script src="{{ mix('/js/vendor.js') }}" defer></script>
@@ -76,22 +63,22 @@
 
     <!-- Core JS -->
     <!-- build:js admin_assets/vendor/js/core.js -->
-    <script src="../admin_assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../admin_assets/vendor/libs/popper/popper.js"></script>
-    <script src="../admin_assets/vendor/js/bootstrap.js"></script>
-    <script src="../admin_assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="{{asset('admin_assets/vendor/libs/jquery/jquery.js')}}"></script>
+    <script src="{{asset('admin_assets/vendor/libs/popper/popper.js')}}"></script>
+    <script src="{{asset('admin_assets/vendor/js/bootstrap.js')}}"></script>
+    <script src="{{asset('admin_assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
 
-    <script src="../admin_assets/vendor/js/menu.js"></script>
+    <script src="{{asset('admin_assets/vendor/js/menu.js')}}"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="../admin_assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="{{asset('admin_assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 
     <!-- Main JS -->
-    <script src="../admin_assets/js/main.js"></script>
+    <script src="{{asset('admin_assets/js/main.js')}}"></script>
 
     <!-- Page JS -->
-    <script src="../admin_assets/js/dashboards-analytics.js"></script>
+    <script src="{{asset('admin_assets/js/dashboards-analytics.js')}}"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

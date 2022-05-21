@@ -75,11 +75,22 @@
           <li class="menu-header small text-uppercase"><span class="menu-header-text">Quizzes</span></li>
 
           <li class="menu-item">
-            <a href="tables-basic.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-table"></i>
-              <div data-i18n="Tables">Quiz</div>
-            </a>
+            <Link :href="route('admin.quizz.index')" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-table"></i>
+            <div data-i18n="Tables">Quiz List</div>
+
+            </Link>
+
           </li>
+          <li class="menu-item">
+            <Link :href="route('admin.quizz.create')" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-table"></i>
+              <div data-i18n="Tables">Quiz Create</div>
+
+            </Link>
+
+          </li>
+
 
         </ul>
       </aside>
@@ -131,10 +142,10 @@
                     <div class="dropdown-divider"></div>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="auth-login-basic.html">
-                      <i class="bx bx-power-off me-2"></i>
-                      <span class="align-middle">Log Out</span>
-                    </a>
+                    <Link :href="route('admin.logout')" class="dropdown-item" method="post" as="button" type="button">
+                    <i class="bx bx-power-off me-2"></i>
+                    <span class="align-middle">Log Out</span>
+                    </Link>
                   </li>
                 </ul>
               </li>

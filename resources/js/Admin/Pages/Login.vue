@@ -59,12 +59,12 @@
             <h4 class="mb-2">Welcome to Quizz! 👋</h4>
             <p class="mb-4">Please sign-in to your account as Admin</p>
 
-            <form id="formAuthentication" class="mb-3"  @submit.prevent="login">
+            <form id="formAuthentication" class="mb-3" @submit.prevent="login">
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" v-model="form.email"
-                  placeholder="Enter your email" autofocus />
-                  <div v-if="form.errors.email">{{ form.errors.email }}</div>
+                <input type="text" class="form-control" id="email" v-model="form.email" placeholder="Enter your email"
+                  autofocus />
+                <div v-if="form.errors.email">{{ form.errors.email }}</div>
               </div>
               <div class="mb-3 form-password-toggle">
 
@@ -72,15 +72,22 @@
                   <input :type="passwordType" id="password" class="form-control" v-model="form.password"
                     placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                     aria-describedby="password" />
-                  <span @click="togglePassword" class="input-group-text cursor-pointer"><i class="bx " :class="[passwordType == 'password' ? 'bx-hide' : 'bx-show']"></i></span>
+                  <span @click="togglePassword" class="input-group-text cursor-pointer"><i class="bx "
+                      :class="[passwordType == 'password' ? 'bx-hide' : 'bx-show']"></i></span>
                 </div>
-                  <div v-if="form.errors.email">{{ form.errors.password }}</div>
+                <div v-if="form.errors.password">{{ form.errors.password }}</div>
               </div>
               <div class="mb-3">
 
               </div>
               <div class="mb-3">
                 <button class="btn btn-primary d-grid w-100">Sign in</button>
+              </div>
+              <div id="">
+                <p class="mb-2">email: admin@example.com</p>
+                <p class="mb-2">password: secret</p>
+
+
               </div>
             </form>
 
@@ -105,18 +112,18 @@ export default {
       }),
     }
   },
-  methods:{
-    togglePassword(){
+  methods: {
+    togglePassword() {
       if (this.passwordType == 'password') {
         this.passwordType = 'text'
 
-      }else{
+      } else {
         this.passwordType = 'password'
 
       }
     },
-    login(){
-      this.form.post('/admin/login',{
+    login() {
+      this.form.post('/admin/login', {
         preserveScroll: true,
       });
       this.form.password = null

@@ -22,11 +22,22 @@ class LoginController extends Controller
         if (\Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('admin.index');
+            return redirect()->route('admin.index');
         }
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
+    }
+
+    public function logout(Request $request)
+    {
+        \Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('admin.login');
     }
 }

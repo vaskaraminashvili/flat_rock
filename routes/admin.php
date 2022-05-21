@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -19,16 +20,16 @@ Route::post('login', [LoginController::class, 'authenticate'])
     ->name('authenticate')
     ->middleware('guest');
 
+Route::post('logout', [LoginController::class, 'logout'])
+->name('logout')
+->middleware('auth');
+
 Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/', function () {
         return Inertia::render('@.Welcome');
     })->name('index');
 
-    Route::get('/about', function () {
-        return Inertia::render('@.About');
-    })->name('about');
-
-    Route::get('/contact', function () {
-        return Inertia::render('@.Contact');
-    })->name('contact');
+    Route::resources([
+        'quizz' => QuizController::class,
+    ]);
 });

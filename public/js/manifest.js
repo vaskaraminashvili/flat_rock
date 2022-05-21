@@ -107,7 +107,7 @@
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Admin_Pages_About_vue":"b9257bf362e130cc","resources_js_Admin_Pages_Contact_vue":"3304e1a3fae9a0e2","resources_js_Admin_Pages_Login_vue":"a5ac5eda85e60b12","resources_js_Admin_Pages_Welcome_vue":"0e9d5bf42a0bc682","resources_js_Web_Pages_Welcome_vue":"62f43232ca81abbe"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Admin_Pages_About_vue":"b9257bf362e130cc","resources_js_Admin_Pages_Contact_vue":"3304e1a3fae9a0e2","resources_js_Admin_Pages_Login_vue":"103803e23e2ef610","resources_js_Admin_Pages_Quizz_Create_vue":"ca5a614a72cb85b2","resources_js_Admin_Pages_Quizz_Index_vue":"d120cbc5e2da1fbc","resources_js_Admin_Pages_Welcome_vue":"0e9d5bf42a0bc682","resources_js_Web_Pages_Welcome_vue":"62f43232ca81abbe"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	
