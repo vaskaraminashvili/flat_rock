@@ -1,6 +1,10 @@
 <template>
-    <div>
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, dolores. Distinctio aperiam necessitatibus odio vel expedita suscipit voluptas voluptatum nesciunt possimus, corrupti vero ut iusto tempore beatae voluptatem optio maiores?
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dicta est labore molestias, quam quasi? Asperiores exercitationem laudantium perferendis soluta sunt. Architecto dolores expedita, modi quisquam quos sint tempora voluptatem.
+        </div>
+      </div>
     </div>
 </template>
 
@@ -8,6 +12,8 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, dolores. Distin
 
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.test{
+  /*height: 1500px;*/
+}
 </style>
