@@ -19,7 +19,7 @@ class QuizController extends Controller
             ->orderBy('id', 'DESC')
             ->paginate(10)
             ->withQueryString()
-            ->through(fn ($quizz) => [
+            ->through(fn($quizz) => [
                 'id' => $quizz->id,
                 'title' => $quizz->title,
                 'time' => $quizz->time,
@@ -43,12 +43,12 @@ class QuizController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'title' => 'required|max:150',
             'time' => 'required|numeric|max:60',
             'description' => 'nullable|max:600',
@@ -65,7 +65,7 @@ class QuizController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -76,34 +76,48 @@ class QuizController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Quizz $quizz)
     {
-        //
+        return Inertia::render('@.Quizz/Edit', [
+            'quizz' => $quizz
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Quizz $quizz)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:150',
+            'time' => 'required|numeric|max:60',
+            'description' => 'nullable|max:600',
+        ]);
+        $input = $request->all();
+        $quizz->update($input);
+
+        return redirect()->route('admin.quizz.edit', $quizz->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Quizz $quizz)
     {
-        //
+        $quizz->delete();
+
+        return redirect()->route('admin.quizz.index');
     }
+
+
 }

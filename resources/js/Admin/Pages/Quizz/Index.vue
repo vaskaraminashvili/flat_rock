@@ -1,7 +1,11 @@
 <template>
   <!-- Basic Bootstrap Table -->
   <div class="card">
-    <h5 class="card-header">Table Basic</h5>
+    <div class="card-header d-flex justify-content-between">
+      <h5>Table Basic</h5>
+      <Link :href="route('admin.quizz.create')" class="btn btn-primary">Create New Quizz </Link>
+    </div>
+
     <div class="table-responsive text-nowrap">
       <table class="table">
         <thead>
@@ -29,12 +33,12 @@
                 <i class="bx bx-dots-vertical-rounded"></i>
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);"
-                ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                >
-                <a class="dropdown-item" href="javascript:void(0);"
-                ><i class="bx bx-trash me-1"></i> Delete</a
-                >
+                <Link :href="route('admin.quizz.edit', quizz.id)" class="dropdown-item">
+                  <i class="bx bx-edit-alt me-1"></i> Edit
+                </Link>
+                <Link :href="route('admin.quizz.destroy', quizz.id)" method="delete" class="dropdown-item">
+                  <i class="bx bx-trash me-1"></i> Delete
+                </Link>
               </div>
             </div>
           </td>

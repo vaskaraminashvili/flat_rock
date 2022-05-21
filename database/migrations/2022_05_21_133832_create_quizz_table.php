@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('time');
             $table->boolean('active');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 const webpackConfig = require('./webpack.config');
 mix.js('resources/js/app.js', 'public/js')
   .copy('resources/admin_assets/', 'public/admin_assets/')
+  .copy('resources/css/bootstrap_theme.min.css', 'public/css/')
   .extract()
   .webpackConfig(webpackConfig)
   .vue(3)

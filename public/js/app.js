@@ -656,6 +656,14 @@ var map = {
 		"./resources/js/Admin/Pages/Quizz/Create.vue",
 		"resources_js_Admin_Pages_Quizz_Create_vue"
 	],
+	"./Quizz/Edit": [
+		"./resources/js/Admin/Pages/Quizz/Edit.vue",
+		"resources_js_Admin_Pages_Quizz_Edit_vue"
+	],
+	"./Quizz/Edit.vue": [
+		"./resources/js/Admin/Pages/Quizz/Edit.vue",
+		"resources_js_Admin_Pages_Quizz_Edit_vue"
+	],
 	"./Quizz/Index": [
 		"./resources/js/Admin/Pages/Quizz/Index.vue",
 		"resources_js_Admin_Pages_Quizz_Index_vue"

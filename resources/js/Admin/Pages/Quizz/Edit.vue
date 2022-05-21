@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card mb-4">
-          <h5 class="card-header">Create Quizz</h5>
+          <h5 class="card-header">Edit Quizz</h5>
           <div class="card-body">
-            <form @submit.prevent="store">
+            <form @submit.prevent="update">
 
 
               <div class="mb-3">
@@ -42,7 +42,8 @@
                        false-value="0"/>
                 <label class="form-check-label" for="active"> Active </label>
               </div>
-              <div class="d-flex justify-content-end">
+              <div class="d-flex justify-content-between">
+                <button type="button" @click="destroy" class="btn btn-danger">Delete</button>
                 <button class="btn btn-primary">Submit</button>
               </div>
             </form>
@@ -57,20 +58,28 @@
 import route from "ziggy-js";
 
 export default {
+  props: {
+    quizz: Object,
+  },
   data() {
     return {
       form: this.$inertia.form({
-        title: '',
-        description: '',
-        time: '',
-        active: 0,
+        title: this.quizz.title,
+        description: this.quizz.description,
+        time: this.quizz.time,
+        active: this.quizz.active,
       }),
     }
   },
   methods: {
-    store() {
-      console.log('store');
-      this.form.post(route('admin.quizz.store'), {
+    destroy(){
+      console.log('asds')
+      if (confirm('Delete this quizz?')) {
+        this.$inertia.delete(route('admin.quizz.destroy', this.quizz.id))
+      }
+    },
+    update() {
+      this.form.patch(route('admin.quizz.update', this.quizz.id), {
         preserveScroll: true,
       });
     }
