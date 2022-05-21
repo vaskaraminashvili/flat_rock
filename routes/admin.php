@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -10,9 +11,13 @@ use Inertia\Inertia;
 
 // Route::inertia('/', 'Welcome');
 
-Route::get('/login', function () {
-    return Inertia::render('@.Login');
-})->name('login');
+Route::get('login', [LoginController::class, 'login'])
+    ->name('login')
+    ->middleware('guest');
+
+Route::post('login', [LoginController::class, 'authenticate'])
+    ->name('authenticate')
+    ->middleware('guest');
 
 Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/', function () {

@@ -59,26 +59,28 @@
             <h4 class="mb-2">Welcome to Quizz! 👋</h4>
             <p class="mb-4">Please sign-in to your account as Admin</p>
 
-            <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+            <form id="formAuthentication" class="mb-3"  @submit.prevent="login">
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" name="email"
+                <input type="text" class="form-control" id="email" v-model="form.email"
                   placeholder="Enter your email" autofocus />
+                  <div v-if="form.errors.email">{{ form.errors.email }}</div>
               </div>
               <div class="mb-3 form-password-toggle">
 
                 <div class="input-group input-group-merge">
-                  <input :type="passwordType" id="password" class="form-control" name="password"
+                  <input :type="passwordType" id="password" class="form-control" v-model="form.password"
                     placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                     aria-describedby="password" />
                   <span @click="togglePassword" class="input-group-text cursor-pointer"><i class="bx " :class="[passwordType == 'password' ? 'bx-hide' : 'bx-show']"></i></span>
                 </div>
+                  <div v-if="form.errors.email">{{ form.errors.password }}</div>
               </div>
               <div class="mb-3">
 
               </div>
               <div class="mb-3">
-                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                <button class="btn btn-primary d-grid w-100">Sign in</button>
               </div>
             </form>
 
@@ -96,7 +98,11 @@ export default {
   layout: LoginLayout,
   data() {
     return {
-      passwordType: 'password'
+      passwordType: 'password',
+      form: this.$inertia.form({
+        email: '',
+        password: '',
+      }),
     }
   },
   methods:{
@@ -108,6 +114,12 @@ export default {
         this.passwordType = 'password'
 
       }
+    },
+    login(){
+      this.form.post('/admin/login',{
+        preserveScroll: true,
+      });
+      this.form.password = null
     }
   }
 }
