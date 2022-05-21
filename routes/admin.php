@@ -10,14 +10,20 @@ use Inertia\Inertia;
 
 // Route::inertia('/', 'Welcome');
 
-Route::get('/', function () {
-    return Inertia::render('@.Welcome');
-})->name('index');
+Route::get('/login', function () {
+    return Inertia::render('@.Login');
+})->name('login');
 
-Route::get('/about', function () {
-    return Inertia::render('@.About');
-})->name('about');
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::get('/', function () {
+        return Inertia::render('@.Welcome');
+    })->name('index');
 
-Route::get('/contact', function () {
-    return Inertia::render('@.Contact');
-})->name('contact');
+    Route::get('/about', function () {
+        return Inertia::render('@.About');
+    })->name('about');
+
+    Route::get('/contact', function () {
+        return Inertia::render('@.Contact');
+    })->name('contact');
+});
