@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Quizz;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,7 +15,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quizzes = Quizz::query()
+        $quizzes = Quiz::query()
             ->orderBy('id', 'DESC')
             ->paginate(10)
             ->withQueryString()
@@ -48,6 +48,7 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required|max:150',
             'time' => 'required|numeric|max:60',
@@ -56,7 +57,7 @@ class QuizController extends Controller
 
         $input = $request->all();
 
-        Quizz::create($input);
+        Quiz::create($input);
 
         return redirect()->route('admin.quizz.index');
 

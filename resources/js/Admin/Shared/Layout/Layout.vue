@@ -75,7 +75,7 @@
           <li class="menu-header small text-uppercase"><span class="menu-header-text">Quizzes</span></li>
 
           <li class="menu-item">
-            <Link :href="route('admin.quizz.index')" class="menu-link">
+            <Link :href="route('admin.quizzes.index')" class="menu-link">
             <i class="menu-icon tf-icons bx bx-table"></i>
             <div data-i18n="Tables">Quiz List</div>
 
@@ -83,7 +83,7 @@
 
           </li>
           <li class="menu-item">
-            <Link :href="route('admin.quizz.create')" class="menu-link">
+            <Link :href="route('admin.quizzes.create')" class="menu-link">
               <i class="menu-icon tf-icons bx bx-table"></i>
               <div data-i18n="Tables">Quiz Create</div>
 
@@ -91,6 +91,43 @@
 
           </li>
 
+          <li class="menu-header small text-uppercase"><span class="menu-header-text">Question</span></li>
+
+          <li class="menu-item">
+            <Link :href="route('admin.questions.index')" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-table"></i>
+              <div data-i18n="Tables">Question List</div>
+
+            </Link>
+
+          </li>
+          <li class="menu-item">
+            <Link :href="route('admin.questions.create')" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-table"></i>
+              <div data-i18n="Tables">Question Create</div>
+
+            </Link>
+
+          </li>
+
+          <li class="menu-header small text-uppercase"><span class="menu-header-text">Answer</span></li>
+
+          <li class="menu-item">
+            <Link :href="route('admin.answers.index')" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-table"></i>
+              <div data-i18n="Tables">Answer List</div>
+
+            </Link>
+
+          </li>
+          <li class="menu-item">
+            <Link :href="route('admin.answers.create')" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-table"></i>
+              <div data-i18n="Tables">Answer Create</div>
+
+            </Link>
+
+          </li>
 
         </ul>
       </aside>

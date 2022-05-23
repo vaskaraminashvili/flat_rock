@@ -1,0 +1,86 @@
+<template>
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-4">
+          <h5 class="card-header">Edit Answer</h5>
+          <div class="card-body">
+            <form @submit.prevent="update">
+
+              <div class="mb-3">
+                <label for="quiz_id" class="form-label">Choose Question</label>
+                <select class="form-select" id="quiz_id" v-model="form.question_id">
+                  <option disabled value="">Open this select menu</option>
+
+                  <option v-for="question in questions" :key="question.id" v-text="question.question"
+                          :value="question.id"></option>
+                </select>
+                <div v-if="form.errors.question_id">{{ form.errors.question_id }}</div>
+              </div>
+              <div class="mb-3">
+                <label for="question" class="form-label">Answer</label>
+                <input
+                  v-model.trim="form.answer"
+                  type="text"
+                  class="form-control"
+                  id="answer"
+                  placeholder="Title"
+                />
+                <div v-if="form.errors.answer">{{ form.errors.answer }}</div>
+              </div>
+
+              <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" id="correct" v-model="form.correct" true-value="1"
+                       false-value="0"/>
+                <label class="form-check-label" for="correct"
+                >Is correct</label
+                >
+              </div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="active" v-model="form.active"
+                       true-value="1"
+                       false-value="0"/>
+                <label class="form-check-label" for="active"> Active </label>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<script>
+import route from "ziggy-js";
+
+export default {
+  props: {
+    answer: Object,
+    questions: Object,
+  },
+  data() {
+    return {
+      form: this.$inertia.form({
+        question_id: this.answer.question_id,
+        answer: this.answer.answer,
+        correct: this.answer.correct,
+        active: this.answer.active,
+      }),
+    }
+  },
+  methods: {
+
+    update() {
+      this.form.patch(route('admin.answers.update', this.answer.id));
+    }
+  },
+}
+</script>
+
+<style scoped>
+
+</style>

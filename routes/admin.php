@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -21,8 +23,8 @@ Route::post('login', [LoginController::class, 'authenticate'])
     ->middleware('guest');
 
 Route::post('logout', [LoginController::class, 'logout'])
-->name('logout')
-->middleware('auth');
+    ->name('logout')
+    ->middleware('auth');
 
 Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/', function () {
@@ -30,6 +32,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     })->name('index');
 
     Route::resources([
-        'quizz' => QuizController::class,
+        'quizzes' => QuizController::class,
+        'questions' => QuestionController::class,
+        'answers' => AnswerController::class,
     ]);
 });

@@ -30,6 +30,18 @@
                 />
                 <div v-if="form.errors.time">{{ form.errors.time }}</div>
               </div>
+              <div class="mb-3">
+                <label for="score" class="form-label">Score</label>
+                <input
+                  v-model.number="form.score"
+                  type="number"
+                  class="form-control"
+                  id="score"
+                  placeholder="Total Score"
+                />
+                <div v-if="form.errors.score">{{ form.errors.score }}</div>
+              </div>
+
 
               <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
@@ -63,14 +75,15 @@ export default {
         title: '',
         description: '',
         time: '',
-        active: 0,
+        score: '',
+        active: 1,
       }),
     }
   },
   methods: {
     store() {
       console.log('store');
-      this.form.post(route('admin.quizz.store'), {
+      this.form.post(route('admin.quizzes.store'), {
         preserveScroll: true,
       });
     }
