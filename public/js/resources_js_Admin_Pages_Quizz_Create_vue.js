@@ -28,7 +28,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     store: function store() {
-      console.log('store');
       this.form.post(ziggy_js__WEBPACK_IMPORTED_MODULE_0___default()('admin.quizzes.store'), {
         preserveScroll: true
       });

@@ -51,13 +51,19 @@
 
         </tbody>
       </table>
+      
+      <Pagination class="mt-6" :links="answers.links" />
     </div>
   </div>
   <!--/ Basic Bootstrap Table -->
 </template>
 
 <script>
+import Pagination from "@/Admin/Shared/Pagination";
 export default {
+  components: {
+    Pagination,
+  },
   props: {
     answers: Object,
   },

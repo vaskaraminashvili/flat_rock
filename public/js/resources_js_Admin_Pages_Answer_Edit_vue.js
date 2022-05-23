@@ -152,7 +152,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [_hoisted_9, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.questions, function (question) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: question.id,
-      textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(question.question),
+      textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(question.id + ' : ' + question.question),
       value: question.id
     }, null, 8
     /* PROPS */

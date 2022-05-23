@@ -3,7 +3,7 @@
   <div class="card">
     <div class="card-header d-flex justify-content-between">
       <h5>Table Basic</h5>
-      <Link :href="route('admin.quizz.create')" class="btn btn-primary">Create New Quizz </Link>
+      <Link :href="route('admin.quizzes.create')" class="btn btn-primary">Create New Quizz </Link>
     </div>
 
     <div class="table-responsive text-nowrap">
@@ -33,10 +33,10 @@
                 <i class="bx bx-dots-vertical-rounded"></i>
               </button>
               <div class="dropdown-menu">
-                <Link :href="route('admin.quizz.edit', quizz.id)" class="dropdown-item">
+                <Link :href="route('admin.quizzes.edit', quizz.id)" class="dropdown-item">
                   <i class="bx bx-edit-alt me-1"></i> Edit
                 </Link>
-                <Link :href="route('admin.quizz.destroy', quizz.id)" method="delete" class="dropdown-item">
+                <Link :href="route('admin.quizzes.destroy', quizz.id)" method="delete" class="dropdown-item">
                   <i class="bx bx-trash me-1"></i> Delete
                 </Link>
               </div>

@@ -82,9 +82,9 @@ export default {
   },
   methods: {
     store() {
-      console.log('store');
       this.form.post(route('admin.quizzes.store'), {
         preserveScroll: true,
+
       });
     }
   },

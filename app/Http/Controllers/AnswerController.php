@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Answer;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class AnswerController extends Controller
@@ -23,8 +24,8 @@ class AnswerController extends Controller
             ->withQueryString()
             ->through(fn($answer) => [
                 'id' => $answer->id,
-                'question' => $answer->question->question,
-                'answer' => $answer->answer,
+                'question' => Str::words($answer->question?->question, 5, ' ...'),
+                'answer' => Str::words($answer->answer, 5, ' ...'),
                 'correct' => $answer->correct,
                 'active' => $answer->active,
             ]);
@@ -66,7 +67,7 @@ class AnswerController extends Controller
 
         $answer = Answer::create($input);
 
-        return redirect()->route('admin.answers.edit', ['answer' =>$answer->id]);
+        return redirect()->route('admin.answers.create');
     }
 
     /**

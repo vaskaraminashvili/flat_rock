@@ -23,7 +23,7 @@ class QuestionController extends Controller
             ->withQueryString()
             ->through(fn($question) => [
                 'id' => $question->id,
-                'quiz' => $question->quiz->title,
+                'quiz' => $question->quiz?->title,
                 'question' => $question->question,
                 'score' => $question->score,
                 'active' => $question->active,
@@ -68,7 +68,7 @@ class QuestionController extends Controller
 
         $question = Question::create($input);
 
-        return redirect()->route('admin.questions.edit', ['question' =>$question->id]);
+        return redirect()->route('admin.questions.create');
     }
 
     /**
@@ -118,7 +118,7 @@ class QuestionController extends Controller
         $input = $request->all();
         $question->update($input);
 
-        return redirect()->route('admin.questions.edit', $question->id);
+        return redirect()->route('admin.questions.create', $question->id);
     }
 
     /**
@@ -129,7 +129,9 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        return 'destroy';
+        $question->delete();
+
+        return redirect()->route('admin.questions.index');
 
     }
 }

@@ -59,7 +59,7 @@ class QuizController extends Controller
 
         Quiz::create($input);
 
-        return redirect()->route('admin.quizz.index');
+        return redirect()->route('admin.quizzes.index');
 
     }
 
@@ -113,11 +113,11 @@ class QuizController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Quizz $quizz)
+    public function destroy(Quiz $quiz)
     {
-        $quizz->delete();
+        $quiz->delete();
 
-        return redirect()->route('admin.quizz.index');
+        return redirect()->route('admin.quizzes.index');
     }
 
 

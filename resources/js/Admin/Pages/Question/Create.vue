@@ -34,11 +34,11 @@
                   type="number"
                   class="form-control"
                   id="number"
-                  placeholder="Time for Quizz In Munutes"
+                  placeholder="Question Score"
                 />
                 <div v-if="form.errors.score">{{ form.errors.score }}</div>
               </div>
-              <div class="mb-3">
+'              <div class="mb-3">
                 <div class="col-md">
                   <small class="text-light fw-semibold d-block">Question Type</small>
                   <div class="form-check form-check-inline mt-3">
@@ -68,7 +68,7 @@
 
                 <div v-if="form.errors.type">{{ form.errors.type }}</div>
               </div>
-
+'
               <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" id="active" v-model="form.active"
                        true-value="1"
@@ -106,9 +106,9 @@ export default {
   },
   methods: {
     store() {
-      console.log('asds')
       this.form.post(route('admin.questions.store'), {
         preserveScroll: true,
+        onSuccess: () => this.form.reset(),
       });
     }
   },

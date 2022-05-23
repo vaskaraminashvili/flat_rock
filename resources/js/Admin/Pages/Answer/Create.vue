@@ -12,7 +12,9 @@
                 <select class="form-select" id="quiz_id" v-model="form.question_id">
                   <option disabled value="">Open this select menu</option>
 
-                  <option v-for="question in questions" :key="question.id" v-text="question.question" :value="question.id"></option>
+                  <option v-for="question in questions" :key="question.id" :value="question.id">
+                    {{question.id +' : '+ question.question}}
+                  </option>
                 </select>
                 <div v-if="form.errors.question_id">{{ form.errors.question_id }}</div>
               </div>
@@ -56,13 +58,14 @@ import route from "ziggy-js";
 
 export default {
   props:{
-    quizzes: Object,
+    question_id: Number,
     questions: Object,
   },
   data() {
     return {
+
       form: this.$inertia.form({
-        question_id: '',
+        question_id: this.question_id ? this.question_id : '',
         answer: '',
         correct: 0,
         active: 1,
@@ -73,6 +76,7 @@ export default {
     store() {
       this.form.post(route('admin.answers.store'), {
         preserveScroll: true,
+        onSuccess: () => this.form.reset('answer', 'correct'),
       });
     }
   },

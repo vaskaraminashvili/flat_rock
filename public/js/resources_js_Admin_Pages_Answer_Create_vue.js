@@ -16,13 +16,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    quizzes: Object,
+    question_id: Number,
     questions: Object
   },
   data: function data() {
     return {
       form: this.$inertia.form({
-        question_id: '',
+        question_id: this.question_id ? this.question_id : '',
         answer: '',
         correct: 0,
         active: 1
@@ -31,8 +31,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     store: function store() {
+      var _this = this;
+
       this.form.post(ziggy_js__WEBPACK_IMPORTED_MODULE_0___default()('admin.answers.store'), {
-        preserveScroll: true
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          return _this.form.reset('answer', 'correct');
+        }
       });
     }
   }
@@ -92,7 +97,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_10 = ["textContent", "value"];
+var _hoisted_10 = ["value"];
 var _hoisted_11 = {
   key: 0
 };
@@ -154,10 +159,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [_hoisted_9, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.questions, function (question) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: question.id,
-      textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(question.question),
       value: question.id
-    }, null, 8
-    /* PROPS */
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(question.id + ' : ' + question.question), 9
+    /* TEXT, PROPS */
     , _hoisted_10);
   }), 128
   /* KEYED_FRAGMENT */

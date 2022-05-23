@@ -7,12 +7,12 @@
           <div class="card-body">
             <form @submit.prevent="update">
 
-              <div class="mb-3">
+            <div class="mb-3">
                 <label for="quiz_id" class="form-label">Choose Question</label>
                 <select class="form-select" id="quiz_id" v-model="form.question_id">
                   <option disabled value="">Open this select menu</option>
 
-                  <option v-for="question in questions" :key="question.id" v-text="question.question"
+                  <option v-for="question in questions" :key="question.id" v-text="question.id + ' : ' + question.question"
                           :value="question.id"></option>
                 </select>
                 <div v-if="form.errors.question_id">{{ form.errors.question_id }}</div>
