@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\Admin\AnswerController;
+use App\Http\Controllers\Admin\QuestionController;
+use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 

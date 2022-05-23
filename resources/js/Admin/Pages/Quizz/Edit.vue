@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card mb-4">
-          <h5 class="card-header">Edit Quizz</h5>
+          <h5 class="card-header">Edit Quiz</h5>
           <div class="card-body">
             <form @submit.prevent="update">
 
@@ -59,27 +59,26 @@ import route from "ziggy-js";
 
 export default {
   props: {
-    quizz: Object,
+    quiz: Object,
   },
   data() {
     return {
       form: this.$inertia.form({
-        title: this.quizz.title,
-        description: this.quizz.description,
-        time: this.quizz.time,
-        active: this.quizz.active,
+        title: this.quiz.title,
+        description: this.quiz.description,
+        time: this.quiz.time,
+        active: this.quiz.active,
       }),
     }
   },
   methods: {
     destroy(){
-      console.log('asds')
-      if (confirm('Delete this quizz?')) {
-        this.$inertia.delete(route('admin.quizz.destroy', this.quizz.id))
+      if (confirm('Delete this quiz?')) {
+        this.$inertia.delete(route('admin.quizzes.destroy', this.quiz.id))
       }
     },
     update() {
-      this.form.patch(route('admin.quizz.update', this.quizz.id), {
+      this.form.patch(route('admin.quizzes.update', this.quiz.id), {
         preserveScroll: true,
       });
     }

@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Quizz;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use function redirect;
 
 class QuizController extends Controller
 {
@@ -80,10 +83,10 @@ class QuizController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Quizz $quizz)
+    public function edit(Quiz $quiz)
     {
         return Inertia::render('@.Quizz/Edit', [
-            'quizz' => $quizz
+            'quiz' => $quiz
         ]);
     }
 
@@ -94,7 +97,7 @@ class QuizController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quizz $quizz)
+    public function update(Request $request, Quiz $quiz)
     {
         $request->validate([
             'title' => 'required|max:150',
@@ -102,9 +105,9 @@ class QuizController extends Controller
             'description' => 'nullable|max:600',
         ]);
         $input = $request->all();
-        $quizz->update($input);
+        $quiz->update($input);
 
-        return redirect()->route('admin.quizz.edit', $quizz->id);
+        return redirect()->route('admin.quizzes.edit', $quiz->id);
     }
 
     /**

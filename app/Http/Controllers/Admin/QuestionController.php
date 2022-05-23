@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use function redirect;
 
 class QuestionController extends Controller
 {

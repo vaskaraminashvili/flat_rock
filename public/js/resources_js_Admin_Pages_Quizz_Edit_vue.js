@@ -16,28 +16,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    quizz: Object
+    quiz: Object
   },
   data: function data() {
     return {
       form: this.$inertia.form({
-        title: this.quizz.title,
-        description: this.quizz.description,
-        time: this.quizz.time,
-        active: this.quizz.active
+        title: this.quiz.title,
+        description: this.quiz.description,
+        time: this.quiz.time,
+        active: this.quiz.active
       })
     };
   },
   methods: {
     destroy: function destroy() {
-      console.log('asds');
-
-      if (confirm('Delete this quizz?')) {
-        this.$inertia["delete"](ziggy_js__WEBPACK_IMPORTED_MODULE_0___default()('admin.quizz.destroy', this.quizz.id));
+      if (confirm('Delete this quiz?')) {
+        this.$inertia["delete"](ziggy_js__WEBPACK_IMPORTED_MODULE_0___default()('admin.quizzes.destroy', this.quiz.id));
       }
     },
     update: function update() {
-      this.form.patch(ziggy_js__WEBPACK_IMPORTED_MODULE_0___default()('admin.quizz.update', this.quizz.id), {
+      this.form.patch(ziggy_js__WEBPACK_IMPORTED_MODULE_0___default()('admin.quizzes.update', this.quiz.id), {
         preserveScroll: true
       });
     }
@@ -73,7 +71,7 @@ var _hoisted_4 = {
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
   "class": "card-header"
-}, "Edit Quizz", -1
+}, "Edit Quiz", -1
 /* HOISTED */
 );
 
