@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuizConttroller;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -10,6 +11,13 @@ use Inertia\Inertia;
 
 // Route::inertia('/', 'Welcome');
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-});
+
+Route::get('/', [QuizConttroller::class, 'index'])
+    ->name('index');
+Route::get('/take-quiz/{quiz}', [QuizConttroller::class, 'takeQuiz'])
+    ->name('takeQuiz');
+
+
+Route::post('/take-quiz/checkAnswer', [QuizConttroller::class, 'checkAnswer'])
+    ->name('checkAnswer');
+

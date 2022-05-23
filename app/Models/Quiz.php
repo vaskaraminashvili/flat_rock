@@ -12,4 +12,14 @@ class Quiz extends Model
     use SoftDeletes;
 
     protected $fillable = ['title', 'description', 'time', 'score', 'active'];
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    public function questionsAnswers()
+    {
+        return $this->hasManyThrough(Answer::class, Question::class);
+    }
 }
