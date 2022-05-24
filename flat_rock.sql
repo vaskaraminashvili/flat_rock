@@ -11,7 +11,7 @@
  Target Server Version : 50736
  File Encoding         : 65001
 
- Date: 24/05/2022 01:02:54
+ Date: 24/05/2022 23:37:09
 */
 
 SET NAMES utf8mb4;
@@ -85,7 +85,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of migrations
@@ -98,6 +98,7 @@ INSERT INTO `migrations` VALUES (5, '2022_05_21_133832_create_quizzes_table', 1)
 INSERT INTO `migrations` VALUES (6, '2022_05_23_092421_create_questions_table', 1);
 INSERT INTO `migrations` VALUES (7, '2022_05_23_092939_create_answers_table', 1);
 INSERT INTO `migrations` VALUES (8, '2022_05_23_093416_create_results_table', 1);
+INSERT INTO `migrations` VALUES (9, '2022_05_24_090416_create_site_users_table', 2);
 
 -- ----------------------------
 -- Table structure for password_resets
@@ -151,7 +152,7 @@ CREATE TABLE `questions`  (
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of questions
@@ -161,6 +162,7 @@ INSERT INTO `questions` VALUES (14, 3, 'Multiple choice', 1, 1, 'Which of the fo
 INSERT INTO `questions` VALUES (19, 3, 'Multiple choice', 1, 1, 'Which of the following is correct about constants?', '2022-05-23 14:07:00', '2022-05-23 14:07:00');
 INSERT INTO `questions` VALUES (20, 3, 'Multiple choice', 1, 1, 'Which of the following magic constant of PHP returns class method name?', '2022-05-23 14:07:15', '2022-05-23 14:07:15');
 INSERT INTO `questions` VALUES (21, 3, 'Multiple choice', 1, 1, 'Which of the following variable is used to generate random numbers using PHP?', '2022-05-23 14:07:22', '2022-05-23 14:07:22');
+INSERT INTO `questions` VALUES (27, 4, 'Binary', 1, 60, 'asdas', '2022-05-24 19:34:26', '2022-05-24 19:34:26');
 
 -- ----------------------------
 -- Table structure for quizzes
@@ -177,14 +179,15 @@ CREATE TABLE `quizzes`  (
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   `deleted_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of quizzes
 -- ----------------------------
 INSERT INTO `quizzes` VALUES (1, 'title', 'deas da', 20, 10, 1, NULL, '2022-05-23 13:55:09', '2022-05-23 13:55:09');
 INSERT INTO `quizzes` VALUES (2, 'Php quiz', 'Following quiz provides Multiple Choice Questions (MCQs) related to PHP. You will have to read all the given answers and click over the correct answer. If you are not sure about the answer then you can check the answer using Show Answer button. You can use Next Quiz button to check new set of questions in the quiz.', 30, 100, 1, '2022-05-23 13:52:15', '2022-05-23 13:55:06', '2022-05-23 13:55:06');
-INSERT INTO `quizzes` VALUES (3, 'Php quiz ?', 'Following quiz provides Multiple Choice Questions (MCQs) related to PHP. You will have to read all the given answers and click over the correct answer. If you are not sure about the answer then you can check the answer using Show Answer button. You can use Next Quiz button to check new set of questions in the quiz.', 30, 100, 1, '2022-05-23 13:52:41', '2022-05-23 14:52:20', NULL);
+INSERT INTO `quizzes` VALUES (3, 'Php quiz ?', 'Following quiz provides Multiple Choice Questions (MCQs) related to PHP. You will have to read all the given answers and click over the correct answer. If you are not sure about the answer then you can check the answer using Show Answer button. You can use Next Quiz button to check new set of questions in the quiz.', 1, 100, 1, '2022-05-23 13:52:41', '2022-05-23 14:52:20', NULL);
+INSERT INTO `quizzes` VALUES (4, 'quiz 234 32', 'asdfsfsdfs d', 4, 30, 1, '2022-05-24 19:33:51', '2022-05-24 19:33:51', NULL);
 
 -- ----------------------------
 -- Table structure for results
@@ -192,21 +195,45 @@ INSERT INTO `quizzes` VALUES (3, 'Php quiz ?', 'Following quiz provides Multiple
 DROP TABLE IF EXISTS `results`;
 CREATE TABLE `results`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `site_user_id` bigint(20) UNSIGNED NOT NULL,
   `quiz_id` bigint(20) UNSIGNED NOT NULL,
   `status` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `score` double(8, 2) NOT NULL,
-  `answerted_questions` double(8, 2) NOT NULL,
-  `started_at` datetime(0) NOT NULL,
-  `finished_at` datetime(0) NOT NULL,
+  `answered_questions` double(8, 2) NOT NULL,
+  `started_at` datetime(0) NULL DEFAULT NULL,
+  `finished_at` datetime(0) NULL DEFAULT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of results
 -- ----------------------------
+INSERT INTO `results` VALUES (1, 1, 3, '1', 0.00, 5.00, '2022-05-24 18:12:38', '2022-05-24 18:18:38', '2022-05-24 17:28:15', '2022-05-24 17:28:15');
+INSERT INTO `results` VALUES (2, 2, 3, '1', 3.00, 5.00, '2022-05-24 18:13:38', '2022-05-24 18:12:38', '2022-05-24 17:28:31', '2022-05-24 17:28:31');
+INSERT INTO `results` VALUES (3, 1, 3, '1', 3.00, 5.00, '2022-05-24 18:12:38', '2022-05-24 18:12:38', '2022-05-24 18:12:56', '2022-05-24 18:12:56');
+INSERT INTO `results` VALUES (4, 1, 3, '1', 1.00, 5.00, '2022-05-24 19:08:50', '2022-05-24 19:10:02', '2022-05-24 19:10:06', '2022-05-24 19:10:06');
+
+-- ----------------------------
+-- Table structure for site_users
+-- ----------------------------
+DROP TABLE IF EXISTS `site_users`;
+CREATE TABLE `site_users`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `surname` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of site_users
+-- ----------------------------
+INSERT INTO `site_users` VALUES (1, 'Vasil', 'Raminashvili', 'admin@admin.com', '2022-05-24 17:27:18', '2022-05-24 17:27:18');
+INSERT INTO `site_users` VALUES (2, 'Vasil', 'Raminashvili', '123123@email.com', '2022-05-24 17:28:31', '2022-05-24 17:28:31');
 
 -- ----------------------------
 -- Table structure for users

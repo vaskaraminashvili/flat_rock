@@ -2,6 +2,11 @@
   <div class="container" v-if="submitForm== false">
     <div class="row">
       <div class="col-xl-6 mx-auto my-4">
+        <QuizTime :minutes="quiz.time" @timeFinished="finish"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-6 mx-auto my-4">
         <div class="card border-light mb-3">
           <div class="card-body" v-for="(question,index) in quiz.questions" :key="question.index">
             <div v-show="currentQueston == index">
@@ -44,16 +49,18 @@
 <script>
 import axios from 'axios'
 import SubmitQuiz from "@/Web/Shared/SubmitQuiz";
+import QuizTime from "@/Web/Shared/QuizTime";
 
 export default {
-  components: {SubmitQuiz},
+  components: {SubmitQuiz , QuizTime},
   mounted() {
     this.quiz.questions.forEach((question ,index) => {
-      this.userQuiz[index] = {
+      this.userQuiz.questions[index] = {
         question_id : question.id,
         answer_id: 0,
         correct: 0
       };
+      this.userQuiz.started_at =new Date().toISOString().slice(0, 19).replace('T', ' ');
     });
   },
   props: {
@@ -64,7 +71,11 @@ export default {
       submitForm: false,
       currentQueston: 0,
       totalQuestions: this.quiz.questions.length - 1,
-      userQuiz: [],
+      userQuiz: {
+        started_at: '',
+        finished_at: '',
+        questions : []
+      },
       loading: false,
       quiz_id: this.quiz.id,
     }
@@ -83,7 +94,7 @@ export default {
           answer_id: answer_id,
         })
         .then((response) => {
-          this.userQuiz[this.currentQueston] = {question_id: question_id , answer_id: answer_id, correct: response.data.answer};
+          this.userQuiz.questions[this.currentQueston] = {question_id: question_id , answer_id: answer_id, correct: response.data.answer};
           if (response.data.answer) {
             event.target.classList.remove('btn-info');
             event.target.classList.add('btn-success');
@@ -114,7 +125,7 @@ export default {
     },
     finish() {
       this.submitForm =true;
-      console.log('finish');
+      this.userQuiz.finished_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
     },
     submit(user) {
       this.$inertia.post(

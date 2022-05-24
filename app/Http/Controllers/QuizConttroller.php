@@ -17,8 +17,15 @@ class QuizConttroller extends Controller
         $quizzes = Quiz::query()
             ->where('active',1)
             ->get();
+        $results = Result::with(['quiz', 'siteUser'])
+            ->get();
+        $sorted = $results->sortBy([
+            ['score' , 'desc'],
+            ['dateDiff' , 'asc'],
+        ])->values();
         return Inertia::render('Quizz/Index',[
-            'quizzes' => $quizzes
+            'quizzes' => $quizzes,
+            'results' => $sorted
         ]);
     }
 
@@ -54,7 +61,7 @@ class QuizConttroller extends Controller
     public function submit(Request $request){
         $correct_answers = 0;
         $answered_questions = 0;
-        foreach ($request->results as $result){
+        foreach ($request->results['questions'] as $result){
             if ($result['correct'] == 1){
                 $correct_answers ++;
             }
@@ -69,6 +76,8 @@ class QuizConttroller extends Controller
 
         Result::firstOrCreate([
             'site_user_id' => $user->id,
+            'started_at' => $request->results['started_at'],
+            'finished_at' =>  $request->results['finished_at'],
             'quiz_id' => 3,
             'status' => 1,
             'score' => $correct_answers,
