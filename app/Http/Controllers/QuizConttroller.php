@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\Result;
+use App\Models\SiteUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -46,5 +49,39 @@ class QuizConttroller extends Controller
                 'answer' => 0,
             ]);
         }
+    }
+
+    public function submit(Request $request){
+        $correct_answers = 0;
+        $answered_questions = 0;
+        foreach ($request->results as $result){
+            if ($result['correct'] == 1){
+                $correct_answers ++;
+            }
+            if ($result['question_id'] <> 0){
+                $answered_questions ++;
+            }
+        }
+        $user = SiteUser::firstOrCreate(
+            [ 'email' => $request->user['email']],
+            ['name' => $request->user['name'] , 'surname' => $request->user['surname']],
+        );
+
+        Result::firstOrCreate([
+            'site_user_id' => $user->id,
+            'quiz_id' => 3,
+            'status' => 1,
+            'score' => $correct_answers,
+            'answered_questions' => $answered_questions,
+        ]);
+        return redirect()->route('results' , $user->id);
+    }
+
+    public function results($site_user_id)
+    {
+        $user = SiteUser::whereId($site_user_id)->with(['results' , 'results.quiz'])->first();
+        return Inertia::render('Quizz/Results',[
+            'user' => $user
+        ]);
     }
 }

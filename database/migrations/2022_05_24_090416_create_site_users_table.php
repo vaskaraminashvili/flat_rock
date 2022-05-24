@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('results', function (Blueprint $table) {
+        Schema::create('site_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('site_user_id');
-            $table->foreignId('quiz_id');
-            $table->string('status');
-            $table->float('score');
-            $table->float('answered_questions');
-            $table->dateTime('started_at');
-            $table->dateTime('finished_at');
+            $table->string('name');
+            $table->string('surname');
+            $table->string('email');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('results');
+        Schema::dropIfExists('site_users');
     }
 };

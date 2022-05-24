@@ -55,7 +55,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.test[data-v-3e44e7ae]{\n  /*height: 1500px;*/\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.test[data-v-3e44e7ae]{\r\n  /*height: 1500px;*/\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -103,14 +103,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Welcome_vue_vue_type_template_id_3e44e7ae_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Welcome.vue?vue&type=template&id=3e44e7ae&scoped=true */ "./resources/js/Web/Pages/Welcome.vue?vue&type=template&id=3e44e7ae&scoped=true");
 /* harmony import */ var _Welcome_vue_vue_type_style_index_0_id_3e44e7ae_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Welcome.vue?vue&type=style&index=0&id=3e44e7ae&scoped=true&lang=css */ "./resources/js/Web/Pages/Welcome.vue?vue&type=style&index=0&id=3e44e7ae&scoped=true&lang=css");
-/* harmony import */ var G_wamp_www_flat_rock_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_wamp_www_flat_rock_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 const script = {}
 
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,G_wamp_www_flat_rock_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(script, [['render',_Welcome_vue_vue_type_template_id_3e44e7ae_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-3e44e7ae"],['__file',"resources/js/Web/Pages/Welcome.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_wamp_www_flat_rock_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(script, [['render',_Welcome_vue_vue_type_template_id_3e44e7ae_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-3e44e7ae"],['__file',"resources/js/Web/Pages/Welcome.vue"]])
 /* hot reload */
 if (false) {}
 

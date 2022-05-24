@@ -21,3 +21,9 @@ Route::get('/take-quiz/{quiz}', [QuizConttroller::class, 'takeQuiz'])
 Route::post('/take-quiz/checkAnswer', [QuizConttroller::class, 'checkAnswer'])
     ->name('checkAnswer');
 
+Route::post('/take-quiz/submit', [QuizConttroller::class, 'submit'])
+    ->name('submitQuiz');
+
+Route::get('/results/{site_user_id}', [QuizConttroller::class, 'results'])
+    ->name('results');
+

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="submitForm== false">
     <div class="row">
       <div class="col-xl-6 mx-auto my-4">
         <div class="card border-light mb-3">
@@ -12,14 +12,18 @@
                   <button type="button" class="btn btn-info" :disabled="loading"
                           @click="checkAnswer(question.id,answer.id,$event)"
                   >
-                    <span v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span v-if="loading" class="spinner-border spinner-border-sm" role="status"
+                          aria-hidden="true"></span>
                     {{ answer.answer }}
                   </button>
                 </template>
               </div>
               <div class="card-footer d-flex justify-content-between">
-                <button type="button" class="btn btn-outline-primary" @click="prevQuestion">Prev</button>
-                <button type="button" class="btn btn-outline-primary" @click="nextQuestion">Next</button>
+                <button type="button" :disabled="loading" class="btn btn-outline-primary" @click="prevQuestion">Prev</button>
+                <button type="button" :disabled="loading" class="btn btn-outline-primary" v-if="showNext" @click="nextQuestion">Next
+                </button>
+                <button type="button" :disabled="loading" class="btn btn-outline-success" v-else @click="finish">Finish</button>
+
               </div>
             </div>
           </div>
@@ -27,25 +31,51 @@
       </div>
     </div>
   </div>
+  <div class="container" v-else>
+    <div class="row">
+      <div class="col-xl-6 mx-auto my-4">
+        <SubmitQuiz @submit-form="submit"/>
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <script>
 import axios from 'axios'
+import SubmitQuiz from "@/Web/Shared/SubmitQuiz";
 
 export default {
+  components: {SubmitQuiz},
+  mounted() {
+    this.quiz.questions.forEach((question ,index) => {
+      this.userQuiz[index] = {
+        question_id : question.id,
+        answer_id: 0,
+        correct: 0
+      };
+    });
+  },
   props: {
     quiz: Object,
   },
   data() {
     return {
+      submitForm: false,
       currentQueston: 0,
       totalQuestions: this.quiz.questions.length - 1,
       userQuiz: [],
       loading: false,
+      quiz_id: this.quiz.id,
+    }
+  },
+  computed: {
+    showNext() {
+      return this.currentQueston < 4;
     }
   },
   methods: {
-    checkAnswer(question_id, answer_id,event) {
+    checkAnswer(question_id, answer_id, event) {
       this.loading = true
       axios.post(route('checkAnswer'),
         {
@@ -53,14 +83,14 @@ export default {
           answer_id: answer_id,
         })
         .then((response) => {
-          this.userQuiz[question_id] = {answer_id: answer_id, correct: response.data.answer};
-          if (response.data.answer){
+          this.userQuiz[this.currentQueston] = {question_id: question_id , answer_id: answer_id, correct: response.data.answer};
+          if (response.data.answer) {
             event.target.classList.remove('btn-info');
             event.target.classList.add('btn-success');
-          }else{
+          } else {
             event.target.classList.remove('btn-info');
             event.target.classList.add('btn-warning');
-            setTimeout( () => {
+            setTimeout(() => {
               event.target.classList.remove('btn-warning');
               event.target.classList.add('btn-info');
             }, 1000);
@@ -74,7 +104,6 @@ export default {
     },
     nextQuestion() {
       if (this.currentQueston < this.totalQuestions) {
-        console.log(this.currentQueston);
         this.currentQueston++;
       }
     },
@@ -83,6 +112,21 @@ export default {
         this.currentQueston--;
       }
     },
+    finish() {
+      this.submitForm =true;
+      console.log('finish');
+    },
+    submit(user) {
+      this.$inertia.post(
+        route('submitQuiz'),
+        {
+          results:this.userQuiz,
+          user:user,
+        },
+
+      );
+
+    }
 
   },
 }
