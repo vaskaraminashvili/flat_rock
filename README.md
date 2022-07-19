@@ -8,3 +8,4 @@
 ### run migrate with seed to create admin user 
 ### it has atteched db file  
 
+NAVE-6HAE-6F2M-5BWP
